@@ -1,6 +1,7 @@
 
 package flota.dominio.pruebas;
 
+import flota.dominio.Empresa;
 import flota.dominio.Vehiculo;
 
 public class PruebaEmpesa {
@@ -53,11 +54,17 @@ public class PruebaEmpesa {
           
           //3.2. y no hay sitio
           
+          Vehiculo vnuevo3 = new Vehiculo();
+     
+          e.addVehiculo(vnuevo3);
+       
+           for(Vehiculo v : vehiculos){
+               if(v != null){
+                    System.out.println(v);
+               }
+           }
 
-
-//        4. Mostrar de nuevo la lista de los vehículos de la empresa 
 //       
-//        5. Añadir más de 10 vehículos. Debe decirnos que no puede
                 
                 
                 
