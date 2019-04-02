@@ -18,6 +18,12 @@ public class Vehiculo {
     public double getCargaActual() {
         return cargaActual;
     }
+
+    public int getNumCajas() {
+        return numCajas;
+    }
+    
+    
     
     
     
