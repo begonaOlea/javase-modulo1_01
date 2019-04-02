@@ -8,6 +8,9 @@ public class Caja {
     public Caja() {
         peso = 100;
     }
+    public Caja(double peso){
+        this.peso = peso;
+    }
 
     public double getPeso() {
         return peso;

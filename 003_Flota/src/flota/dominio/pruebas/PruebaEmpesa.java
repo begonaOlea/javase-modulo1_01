@@ -41,8 +41,8 @@ public class PruebaEmpesa {
            
 
 //        3. Añadir un vehículo
-          Vehiculo vnuevo1 = new Vehiculo();
-          Vehiculo vnuevo2 = new Vehiculo();
+          Vehiculo vnuevo1 = new Vehiculo("1111B");
+          Vehiculo vnuevo2 = new Vehiculo("3333Z");
           //3.1  y hay sitio
           e.addVehiculo(vnuevo1);
           e.addVehiculo(vnuevo2);
@@ -54,7 +54,7 @@ public class PruebaEmpesa {
           
           //3.2. y no hay sitio
           
-          Vehiculo vnuevo3 = new Vehiculo();
+          Vehiculo vnuevo3 = new Vehiculo("6633G");
      
           e.addVehiculo(vnuevo3);
        

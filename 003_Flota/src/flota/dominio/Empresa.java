@@ -24,7 +24,7 @@ public class Empresa {
     public Empresa(String nombre) {
         this.nombre = nombre;
         this.vehiculos = new Vehiculo[NUM_MAX_VEHICULOS];
-        this.vehiculos[indiceVehiculo] = new Vehiculo(); 
+        this.vehiculos[indiceVehiculo] = new Vehiculo("0000A"); 
         indiceVehiculo ++;
     }
     public String getNombre() {
