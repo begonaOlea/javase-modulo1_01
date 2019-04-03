@@ -17,16 +17,34 @@ public class Empresa {
     public static final int NUM_MAX_VEHICULOS = 3;
     
     private String nombre;
-    //lista = array de 10 vehiculos
+    //lista = array de  NUM_MAX_VEHICULOS vehiculos
     private Vehiculo[] vehiculos;
     private int indiceVehiculo = 0;
 
+    //constructores
+    
+    public Empresa(){
+        this("TRANSPORTES YYY");
+    }
+    
     public Empresa(String nombre) {
+        //llama al constructor Empesa(nombre y vehiculoinicial)
+        this(nombre, new Vehiculo("0000A"));
+//        this.nombre = nombre;
+//        this.vehiculos = new Vehiculo[NUM_MAX_VEHICULOS];
+//        this.vehiculos[indiceVehiculo] = new Vehiculo("0000A"); 
+//        indiceVehiculo ++;
+    }
+    
+     public Empresa(String nombre, Vehiculo vehiculoInicial) {
         this.nombre = nombre;
         this.vehiculos = new Vehiculo[NUM_MAX_VEHICULOS];
-        this.vehiculos[indiceVehiculo] = new Vehiculo("0000A"); 
+        this.vehiculos[indiceVehiculo] = vehiculoInicial;
         indiceVehiculo ++;
     }
+    
+    
+    
     public String getNombre() {
         return " ** " + nombre.toUpperCase();
     }
