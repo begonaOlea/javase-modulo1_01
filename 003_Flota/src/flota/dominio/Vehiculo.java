@@ -78,6 +78,7 @@ public class Vehiculo {
         //devolvemos al última caja
         this.numCajas--;
         Caja cajaDescargar = cajas[this.numCajas];
+        cajas[this.numCajas] = null;
         //otra opcion
         // Caja cajaDescargar = cajas[-- this.numCajas];
         
@@ -98,9 +99,45 @@ public class Vehiculo {
         return numCajas;
     }
 
+    public String getMatricula() {
+        return matricula;
+    }
+
+    /**
+     * método que devuelve una array con las cajas
+     * que hay en el camión. 
+     * Si devuelve null es que no hay cajas
+     * @return 
+     */
+    public Caja[]  getCajasCargadas(){
+        
+        if(this.numCajas == 0){
+            return null;
+        }
+        
+        Caja[] cajasCargadas = new Caja[this.numCajas];
+        int indice =0;
+        for(Caja c : this.cajas){
+            if(c == null){
+                break;
+            }
+            cajasCargadas[indice ++] = c;
+        }
+        return cajasCargadas;
+    }
+
     @Override
     public String toString() {
-        return "Vehiculo{" + "matricula=" + matricula + ", cargaMaxima=" + cargaMaxima + ", cargaActual=" + cargaActual + ", numCajas=" + numCajas + '}';
+        
+//        System.out.println(" lista ");
+//        for(Caja c : cajas){
+//            System.out.println(". " + c);
+//        }
+        return "Vehiculo{" + "matricula=" 
+                + matricula + ", cargaMaxima=" 
+                + cargaMaxima + ", cargaActual=" 
+                + cargaActual + ", numCajas=" + numCajas 
+                + ", lista cajas :" + this.cajas + '}';
     }
 
 }
