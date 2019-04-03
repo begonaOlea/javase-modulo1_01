@@ -42,6 +42,9 @@ public class Empresa {
         this.vehiculos[indiceVehiculo] = vehiculoInicial;
         indiceVehiculo ++;
     }
+     
+     
+     
     
     
     
@@ -66,5 +69,9 @@ public class Empresa {
         this.vehiculos[indiceVehiculo] = v;
         indiceVehiculo ++; 
     }
-    
+
+    @Override
+    public String toString() {
+        return "Empresa{" + "nombre=" + nombre + ", vehiculos=" + vehiculos + ", numeroVehiculos=" + indiceVehiculo + '}';
+    }
 }

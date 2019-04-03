@@ -9,6 +9,9 @@ package flota.dominio;
  */
 public class Vehiculo {
 
+    //atributo de clase
+    private static final int TOTAL_CAJAS_PERM_POR_DEF = 10;
+
     //atributos
     private String matricula = "";
     private double cargaMaxima = 3000.0;
@@ -19,22 +22,22 @@ public class Vehiculo {
      */
     private double cargaActual = 0;
     private int numCajas = 0;
-    private final short TOTAL_CAJAS;
+    private final short TOTAL_CAJAS_PERMITIDAS;
 
     //const
     public Vehiculo(String matricula) {
         this.matricula = matricula;
-        this.TOTAL_CAJAS = 5;
-        this.cajas = new Caja[TOTAL_CAJAS];
+        this.TOTAL_CAJAS_PERMITIDAS = TOTAL_CAJAS_PERM_POR_DEF;
+        this.cajas = new Caja[TOTAL_CAJAS_PERMITIDAS];
     }
 
     public Vehiculo(String matricula,
             short totalCajasPermitidas,
             double cargaMaxPermitida) {
         this.matricula = matricula;
-        this.TOTAL_CAJAS = totalCajasPermitidas;
+        this.TOTAL_CAJAS_PERMITIDAS = totalCajasPermitidas;
         this.cargaMaxima = cargaMaxPermitida;
-        this.cajas = new Caja[TOTAL_CAJAS];
+        this.cajas = new Caja[TOTAL_CAJAS_PERMITIDAS];
     }
 
     //metodos
@@ -46,18 +49,19 @@ public class Vehiculo {
      */
     public void cargar(Caja caja) {
         //validar que solo entren
-        if (numCajas >= 5) {
+        if (numCajas >= this.TOTAL_CAJAS_PERMITIDAS) {
             System.out.println("..No se cargó la caja.  Ya no caben mas cajas");
             return;
         }
         //validar que no super la carga
-        if (caja.getPeso() < 0 || cargaMaxima < (cargaActual + caja.getPeso())) {
+        if (caja.getPeso() < 0
+                || this.cargaMaxima < (this.cargaActual + caja.getPeso())) {
             System.out.println("..No se cargó la caja.  Ha superado la carga máxima permitida");
             return;
         }
-        cargaActual += caja.getPeso();
-        cajas[numCajas] = caja;
-        numCajas++;
+        this.cargaActual += caja.getPeso();
+        this.cajas[numCajas] = caja;
+        this.numCajas++;
     }
 
     /**
@@ -67,14 +71,23 @@ public class Vehiculo {
      */
     public Caja descargar() {
         //validar que haya cajas
-        if (numCajas == 0) {
+        if (this.numCajas == 0) {
             System.out.println(".. no quedan cajas");
             return null;
         }
         //devolvemos al última caja
-        Caja cajaDescargar = cajas[--numCajas];
-        cargaActual -= cajaDescargar.getPeso();
+        this.numCajas--;
+        Caja cajaDescargar = cajas[this.numCajas];
+        //otra opcion
+        // Caja cajaDescargar = cajas[-- this.numCajas];
+        
+        this.cargaActual -= cajaDescargar.getPeso();
         return cajaDescargar;
+    }
+    
+    
+    public Caja descargar(int posicionCaja){
+        return null;
     }
 
     public double getCargaActual() {

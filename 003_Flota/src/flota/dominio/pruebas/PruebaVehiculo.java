@@ -3,6 +3,7 @@ package flota.dominio.pruebas;
 
 import flota.dominio.Caja;
 import flota.dominio.Vehiculo;
+import java.io.File;
 import java.util.Date;
 import java.util.logging.Logger;
 
@@ -59,8 +60,7 @@ public class PruebaVehiculo {
         
          System.out.println("carga actual " + v.getCargaActual());
         System.out.println("cajas  " + v.getNumCajas());
-       
-        
+             
 //        System.out.println("carga actual " + v.getCargaActual());
 //        System.out.println("cargo - 400 kg" );
 //        v.cargar(-400);

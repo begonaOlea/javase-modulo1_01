@@ -8,21 +8,17 @@ public class PruebaEmpesa {
     
     
     public static void main(String[] args) {
-        
-        
-        
-        
-        
-        // Pruebas
+
+       // Pruebas
        // 1. Crear una empresa nueva con el nombre "TRANSPORTES RAMOS"
         
         Empresa e = new Empresa("TRANSPORTES RAMOS");
         
         String nombre =  e.getNombre();
         
-        System.out.println(" nombre es " + nombre);
+        System.out.println(e);
         
-        
+        System.out.println("...........................");
 //        2. Mostrar una lista de los vehículos de la empresa
 //          que tiene inicamente : minimo 1 maximo 10
            System.out.println("2. pruebo mostrar los camiones inicales");
