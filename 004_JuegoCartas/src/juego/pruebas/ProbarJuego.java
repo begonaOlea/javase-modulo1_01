@@ -2,6 +2,7 @@
 package juego.pruebas;
 
 import juego.modelo.Carta;
+import juego.modelo.JuegoCartas;
 
 
 public class ProbarJuego {
@@ -21,7 +22,9 @@ public class ProbarJuego {
         System.out.println("palo " + c2.getPalo());
         System.out.println("numero " + c2.getNumero());
         
-        Carta cartaGanadora = JuegoCartas.jugar(c1,c2);
+        int res = JuegoCartas.jugar(c1,c2);
+        
+        System.out.println(" resultado  es " +  res);
         
     }
     
