@@ -65,20 +65,28 @@ public class Vehiculo {
      *
      * @param Caja - caja a cargar peso en kg de la caja
      */
-    public void cargar(Caja caja) {
+    public void cargar(Caja caja) throws VehiculoException {
         //validar que solo entren
         if (numCajas >= this.TOTAL_CAJAS_PERMITIDAS) {
-            System.out.println("..No se cargó la caja.  Ya no caben mas cajas");
-            return;
+//            System.out.println("..No se cargó la caja.  Ya no caben mas cajas");
+//            return;
+             throw new VehiculoException("No pudo cargar "
+                     + "la caja. El vehiculo está lleno ");
         }
         //validar que no super la carga
-        if (caja.getPeso() < 0
-                || this.cargaMaxima < (this.cargaActual + caja.getPeso())) {
-            System.out.println("..No se cargó la caja.  Ha superado la carga máxima permitida");
-            return;
+        if (//caja.getPeso() < 0||
+             this.cargaMaxima < (this.cargaActual + caja.getPeso())) {
+//            System.out.println("..No se cargó la caja.  Ha superado la carga máxima permitida");
+//            return;
+            VehiculoException e= new VehiculoException("No pudo cargar la caja. "
+                    + "El peso de la caja excede el peso máximo Permitido");
+            double exceso = (this.cargaActual + caja.getPeso()) - this.cargaMaxima;
+            e.setExcesoPeso(exceso);
+            throw e;
         }
         this.cargaActual += caja.getPeso();
         this.cajas[numCajas] = caja;
+      
         this.numCajas++;
     }
 
@@ -157,5 +165,11 @@ public class Vehiculo {
                 + cargaActual + ", numCajas=" + numCajas 
                 + ", lista cajas :" + this.cajas + '}';
     }
+
+    public short getTOTAL_CAJAS_PERMITIDAS() {
+        return TOTAL_CAJAS_PERMITIDAS;
+    }
+    
+    
 
 }

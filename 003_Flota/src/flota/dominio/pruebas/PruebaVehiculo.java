@@ -10,8 +10,8 @@ public class PruebaVehiculo {
 
     public static void main(String[] args) {
         try {
-            short numCajas = 0;
-            Vehiculo v = new Vehiculo("2345T", numCajas, 3000);
+            short numCajas = 5;
+            Vehiculo v = new Vehiculo("2345T", numCajas, 300);
 
             System.out.println("carga actual " + v.getCargaActual());
             System.out.println("cajas  " + v.getNumCajas());
@@ -53,9 +53,15 @@ public class PruebaVehiculo {
             System.out.println("carga actual " + v.getCargaActual());
             System.out.println("cajas  " + v.getNumCajas());
 
-        } catch (VehiculoException | CajaException e) {
-                System.out.println(e.getMessage());
-        } 
+        } catch (VehiculoException e)  {
+              System.out.println(e.getMessage());
+              if(e.getExcesoPeso() >0 ){
+                  System.out.println("Te has excedido en " + 
+                          e.getExcesoPeso() + " kg");
+              }  
+        } catch(CajaException e){
+             System.out.println(e.getMessage());
+        }
 
 //        System.out.println("carga actual " + v.getCargaActual());
 //        System.out.println("cargo - 400 kg" );

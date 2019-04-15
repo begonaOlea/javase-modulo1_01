@@ -7,6 +7,7 @@ package flota.gui;
 
 import flota.dominio.Caja;
 import flota.dominio.Vehiculo;
+import flota.dominio.excepciones.CajaException;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 
@@ -179,6 +180,8 @@ public class GestionVehiculosVentana extends javax.swing.JFrame {
           
            JOptionPane.showMessageDialog(this,
                    "El peso debe ser numérico");
+        }catch(CajaException e2){
+            
         }
 
     }//GEN-LAST:event_cmdCargarActionPerformed
