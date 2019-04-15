@@ -8,6 +8,7 @@ package flota.gui;
 import flota.dominio.Caja;
 import flota.dominio.Vehiculo;
 import flota.dominio.excepciones.CajaException;
+import flota.dominio.excepciones.VehiculoException;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 
@@ -181,7 +182,23 @@ public class GestionVehiculosVentana extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this,
                    "El peso debe ser numérico");
         }catch(CajaException e2){
-            
+            JOptionPane.showMessageDialog(this,
+                  "No se cargo la caja. " 
+                   + e2.getMessage());   
+        }catch(VehiculoException e3){
+            double exceso = e3.getExcesoPeso();
+            if(exceso == 0 ){
+                //lleno. No caben mas cajas
+                JOptionPane.showMessageDialog(this,
+                  "No se cargo la caja. " + e3.getMessage() ); 
+            }else{
+                // es que la caja pesa demasiado
+                JOptionPane.showMessageDialog(this,
+                  "No se cargo la caja. " 
+                   + "El peso de la caja excede " + 
+                          exceso + "sobre el total permitido."); 
+            }
+                   
         }
 
     }//GEN-LAST:event_cmdCargarActionPerformed
