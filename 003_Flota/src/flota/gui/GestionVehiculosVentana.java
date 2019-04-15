@@ -7,6 +7,8 @@ package flota.gui;
 
 import flota.dominio.Caja;
 import flota.dominio.Vehiculo;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -166,12 +168,18 @@ public class GestionVehiculosVentana extends javax.swing.JFrame {
         //añadir caja al vehículo
         //mostrar listado y totales
         String sPeso = this.cmpPesoCaja.getText();
-        double dPeso = Double.parseDouble(sPeso);
+        try{
+           double dPeso = Double.parseDouble(sPeso);
 
-        Caja c = new Caja(dPeso);
-        this.vehiculo.cargar(c);
+           Caja c = new Caja(dPeso);
+           this.vehiculo.cargar(c);
 
-        refrescarListadoyTotales();
+           refrescarListadoyTotales();
+        }catch(NumberFormatException e){
+          
+           JOptionPane.showMessageDialog(this,
+                   "El peso debe ser numérico");
+        }
 
     }//GEN-LAST:event_cmdCargarActionPerformed
 

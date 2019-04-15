@@ -1,5 +1,7 @@
 package flota.dominio;
 
+import flota.dominio.excepciones.VehiculoException;
+
 /**
  * Clase que modela un Vehiculo de una flota de transporte tiene la capacidad de
  * cargar cajas
@@ -33,7 +35,23 @@ public class Vehiculo {
 
     public Vehiculo(String matricula,
             short totalCajasPermitidas,
-            double cargaMaxPermitida) {
+            double cargaMaxPermitida)
+            throws VehiculoException{
+        
+        //validar =
+        //1. totalCajasPermitidas  => 1
+        //2. cargaMaxPermitida > 0
+        if(totalCajasPermitidas < 1){
+            throw new VehiculoException(
+                    "No se pudo crear el vehiculo."
+                    + "Debe poder trasportar al menos 1 caja");
+        }
+        if(cargaMaxPermitida <= 0){
+            throw new VehiculoException(
+                    "No se pudo crear el vehiculo."
+                    + "La carga Maxima permitida debe ser"
+                    + "mayor a cero");
+        }
         this.matricula = matricula;
         this.TOTAL_CAJAS_PERMITIDAS = totalCajasPermitidas;
         this.cargaMaxima = cargaMaxPermitida;
