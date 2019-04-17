@@ -29,6 +29,8 @@ public class Figura {
 
     public static boolean estaPunto(List<Punto> lista, Punto pBuscar) {
 
+        
+        
         Collections.sort(lista);
         int posicion = Collections.binarySearch(lista, pBuscar);
         if (posicion < 0) {  //no encontrado
