@@ -43,12 +43,10 @@ public class Alumno implements Comparable<Alumno> {
     public void setId(int id) {
         this.id = id;
     }
-    
-    
 
     @Override
     public String toString() {
-        return "Alumno{" + "nombre=" + nombre + ", curso=" + curso + '}';
+        return "Alumno{" + "id=" + id + ", nombre=" + nombre + ", curso=" + curso + '}';
     }
 
     @Override

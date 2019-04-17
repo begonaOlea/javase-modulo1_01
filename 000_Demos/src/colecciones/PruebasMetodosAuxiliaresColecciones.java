@@ -29,7 +29,18 @@ public class PruebasMetodosAuxiliaresColecciones {
         System.out.println("lista por id");
         for(Alumno a1 : lista) System.out.println(a1);
         
+        //busqueda binaria  POR ID
         
+        Alumno alumnoABuscar = new Alumno(10,"",2);
+        
+        Collections.sort(lista, new OrdenarAlumnoPorId()); //POR ID
+
+        int posicion = Collections.binarySearch(
+                lista,   //Lista donde se busca ordenada por Id
+                alumnoABuscar, //objeto buscado
+                new OrdenarAlumnoPorId());  // Comparator
+        
+        System.out.println("Luis con id 2 esta en la pos " + posicion);
    
     }
     

@@ -33,8 +33,8 @@ public class PruebaSetAlumnos {
        
         
         
-        for(Alumno a: lista)
-            System.out.println(a);
+        for(Alumno a2: lista)
+            System.out.println(a2);
             
     }
     
