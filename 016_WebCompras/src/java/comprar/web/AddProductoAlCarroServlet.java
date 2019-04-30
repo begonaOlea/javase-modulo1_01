@@ -1,4 +1,3 @@
-
 package comprar.web;
 
 import java.io.IOException;
@@ -13,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet(name = "AddProductoAlCarroServlet", 
+@WebServlet(name = "AddProductoAlCarroServlet",
         urlPatterns = {"/addCarro"})
 public class AddProductoAlCarroServlet extends HttpServlet {
 
@@ -28,63 +27,58 @@ public class AddProductoAlCarroServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         //1.  LEER PARAMETRO DE PETICION
+        boolean hayProducto = true;
         String paramProducto = request.getParameter("producto");
-        if( paramProducto == null ){
-            paramProducto ="No has comprado nada";
+        if (paramProducto == null) {
+            hayProducto = false;
         }
-        
+
         // 2. OBTENER LA SESION HTML
-        
-        //obtener sesion. Si no existe la crea
-        HttpSession sesion = request.getSession();
-        
-        // 3. OBTENER ATRIBUTO DE SESION CARRO
-        
-        //mirar si esta sesion tiene el atribut carro
-        //LEER ATRIBUTO DE SESION
-        Map<String, Integer> carro;
-        if(sesion.getAttribute("carro") == null){
-            //es la primera vez que solicitas l session 
-            //y todavía no le he añadido el carro
+        if (hayProducto) {
+            //obtener sesion. Si no existe la crea
+            HttpSession sesion = request.getSession();
+
+            // 3. OBTENER ATRIBUTO DE SESION CARRO
+            //mirar si esta sesion tiene el atribut carro
+            //LEER ATRIBUTO DE SESION
+            Map<String, Integer> carro;
+            if (sesion.getAttribute("carro") == null) {
+                //es la primera vez que solicitas l session 
+                //y todavía no le he añadido el carro
 //            AÑADIR UN  Map<String, Integer> carro  EN SESION
 //            Y LE LLAMO AL ATRIBUTO "carro";
 
-             carro = new LinkedHashMap();
-             sesion.setAttribute("carro", carro);
+                carro = new LinkedHashMap();
+                sesion.setAttribute("carro", carro);
 
-        }else{
-            //OBTENE EL ATRIBUTO CARRO
-            carro = (LinkedHashMap)sesion.getAttribute("carro");
-        }
-        
-        //4. AÑADIR EL PRODUCTO AL MAP que ya esta 
-        //como atributo de la sesion con el nombre "carro"
-        
-        
-       if( carro.containsKey(paramProducto) ){
-            //ya esta el producto en el carro
-            //incrementa valor
-            Integer cantidad = carro.get(paramProducto);
-            carro.put(paramProducto, ++cantidad);
-            
-        }else{
-            //no esta todavía
-            //añadir 
-            carro.put(paramProducto, 1);
-        }
-        
-        //lista 
-        Set<String> claves = carro.keySet();
-        for(String clave: claves){
-            System.out.println(". " + clave +" "+ carro.get(clave));
-        }
-        
+            } else {
+                //OBTENE EL ATRIBUTO CARRO
+                carro = (LinkedHashMap) sesion.getAttribute("carro");
+            }
 
-        
-        response.setContentType("text/html;charset=UTF-8");
-       
+            //4. AÑADIR EL PRODUCTO AL MAP que ya esta 
+            if (carro.containsKey(paramProducto)) {
+                //ya esta el producto en el carro
+                //incrementa valor
+                Integer cantidad = carro.get(paramProducto);
+                carro.put(paramProducto, ++cantidad);
+
+            } else {
+                //no esta todavía
+                //añadir 
+                carro.put(paramProducto, 1);
+            }
+
+            //lista 
+            Set<String> claves = carro.keySet();
+            for (String clave : claves) {
+                System.out.println(". " + clave + " " + carro.get(clave));
+            }
+
+        }
+
         response.sendRedirect("compras.html");
     }
 
@@ -100,12 +94,9 @@ public class AddProductoAlCarroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
+
         processRequest(request, response);
     }
-
 
     /**
      * Returns a short description of the servlet.

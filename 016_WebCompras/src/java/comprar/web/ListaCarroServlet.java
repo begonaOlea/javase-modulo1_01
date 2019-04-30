@@ -80,6 +80,10 @@ public class ListaCarroServlet extends HttpServlet {
                 for (String producto : claves) {
                     out.println("<li class='list-group-item d-flex justify-content-between align-items-center'>");
                     out.println(producto);
+                    
+                    out.println("<a class='btn btn-primary' href='removeProducto?producto="
+                    +  producto +"'>Borrar</a>");
+                    
                     out.println(" <span class='badge badge-primary badge-pill'>"
                             + carro.get(producto)+"</span>");
                     out.println("</li>");
