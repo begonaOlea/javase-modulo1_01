@@ -5,36 +5,43 @@ import alquiler.dominio.DVDItem;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import javax.inject.Inject;
 
 @Named(value = "alquiler")
 @SessionScoped
 public class AlquilerManagedBean implements Serializable {
 
-    private List<DVDItem> dvds;
+    @Inject 
+    AppManagedBean appManagedBean;
     
     public AlquilerManagedBean() {
-        dvds = new ArrayList();
-        dvds.add(new DVDItem(1, "Superluna", "pop", false));
-        dvds.add(new DVDItem(2, "Mozart", "clásica", false));
-        dvds.add(new DVDItem(3, "Lo Mejor de los 60", "otros", true));
+       }
+
+    public void setAppManagedBean(AppManagedBean appManagedBean) {
+        this.appManagedBean = appManagedBean;
     }
 
-    public List<DVDItem> getDvds() {
-        return dvds;
+    public Collection<DVDItem> getDvds() {
+       // return dvds;
+       return appManagedBean.getDvds().values();
     }
     
     public String alquilar(int id){
         System.out.println("... alquilo id " + id);
-        dvds.get(--id).setAlquilado(true);
+       // dvds.get(--id).setAlquilado(true);
+        DVDItem item =  appManagedBean.getDvds().get(id);
+        item.setAlquilado(true);
+       
         return null;
     }
-    
-    
+      
     public String devolverAlquiler(int id){
         System.out.println("... devolver  id " + id);
-        dvds.get(--id).setAlquilado(false);
+        
+        DVDItem item =  appManagedBean.getDvds().get(id);
+        System.out.println(".. dvd alquilado " + item.getTitulo());
+        item.setAlquilado(false);
         return null;
     }
 }
