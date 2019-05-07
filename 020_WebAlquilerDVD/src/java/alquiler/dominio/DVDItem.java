@@ -72,10 +72,15 @@ public class DVDItem implements Serializable{
             return false;
         }
         final DVDItem other = (DVDItem) obj;
-        if (this.id != other.id) {
+        if(this.id != other.id) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "DVDItem{" + "id=" + id + ", titulo=" + titulo + ", genero=" + genero + ", alquilado=" + alquilado + '}';
     }
     
     

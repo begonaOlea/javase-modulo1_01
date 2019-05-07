@@ -58,10 +58,22 @@
                                      disabled="#{ not dvd.alquilado }"
                                      styleClass="btn btn-primary"
                                      style="margin-left: 5px;"/>
+                    
+                    <h:commandButton value="MODIFICAR"
+                                     action="#{ alquiler.modificarDvd(dvd.id)}"
+                                     styleClass="btn btn-primary"
+                                     style="margin-left: 5px;"/>
 
                 </h:column>
 
             </h:dataTable>
+            
+             <h:commandButton value="NUEVO"
+                              action="#{ alquiler.altaDvd()}"
+                              styleClass="btn btn-primary"
+                              style="margin-left: 5px;"/>
+            
+            
         </h:form>
     </h:body>
 </html>
