@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    template="./WEB-INF/plantillas/plantilla.xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="titulo">Inicio</ui:define>
+
+    <ui:define name="top">
+        <h3>Alquiler</h3>
+    </ui:define>
+
+    <ui:define name="content">
+        
+        <h1>
+            <h:outputLabel rendered="#{alquiler.modoNuevo}" 
+                           value="Alta Nuevo DVD" /> 
+            <h:outputLabel rendered="#{ not alquiler.modoNuevo}" 
+                           value="Modificar DVD #{alquiler.itemActual.titulo}" /> 
+        </h1>
+
+        <h:form id="formDvd">
+
+            <h:panelGrid columns="3">
+
+                <h:outputLabel value="Id" />
+                <h:inputText  id="id"
+                              value="#{alquiler.itemActual.id}" 
+                              required="true"
+                              requiredMessage="El id es necesario"
+                              validatorMessage="El id debe ser mayor a 0" 
+                              disabled="#{not alquiler.modoNuevo}">
+                    <f:validateLongRange minimum="1" />
+                </h:inputText>
+                
+                <h:message for="id" />
+                    
+                <h:outputLabel value="Titulo" />
+                <h:inputText id="titulo"
+                             value="#{alquiler.itemActual.titulo}"
+                             required="true">
+                    <f:validateLength minimum="5" maximum="30" />
+                    
+                </h:inputText>
+                <h:message for="titulo" />
+
+                <h:outputLabel value="Género" />
+                <h:inputText id="gen"
+                             value="#{alquiler.itemActual.genero}"
+                             required="true"/>
+                <h:message for="gen" />
+                
+                <h:outputLabel value="alquilado" rendered="#{not alquiler.modoNuevo}" />
+                <h:selectBooleanCheckbox 
+                    value="#{alquiler.itemActual.alquilado}"
+                    rendered="#{not alquiler.modoNuevo}"/>
+                
+            </h:panelGrid>
+
+            <h:commandButton value="#{alquiler.modoNuevo ?'CREAR':'MODIFICAR'}" 
+                             action="#{alquiler.guardar()}" 
+                             styleClass="btn btn-primary"
+                              style="margin-top: 5px;"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
