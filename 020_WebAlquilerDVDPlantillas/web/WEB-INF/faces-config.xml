@@ -13,6 +13,10 @@
             <from-outcome>home</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>generos</from-outcome>
+            <to-view-id>/generos.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     <navigation-rule>
         <from-view-id>/alquiler.xhtml</from-view-id>

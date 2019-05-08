@@ -10,7 +10,7 @@ public class DVDItem implements Serializable{
     private String titulo;
     private String genero;
     private boolean alquilado;
-
+  
     public DVDItem() {
     }
 

@@ -2,9 +2,10 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
+        <Node id="generos.xhtml" x="150" y="300" zoom="true"/>
         <Node id="editarDvd.xhtml" x="418" y="152" zoom="true"/>
         <Node id="alquiler.xhtml" x="371" y="39" zoom="true"/>
-        <Node id="*" x="198" y="192" zoom="true"/>
+        <Node id="*" x="228" y="205" zoom="true"/>
         <Node id="index.xhtml" x="96" y="49" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

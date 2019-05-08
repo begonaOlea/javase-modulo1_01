@@ -48,10 +48,10 @@
                 <h:message for="titulo" />
 
                 <h:outputLabel value="Género" />
-                <h:inputText id="gen"
-                             value="#{alquiler.itemActual.genero}"
-                             required="true"/>
-                <h:message for="gen" />
+                <h:selectOneMenu id="gen" value="#{alquiler.itemActual.genero}">
+                     <f:selectItems value="#{appManagedBean.generos}"  />
+                 </h:selectOneMenu>
+                <h:message for="gen" />               
                 
                 <h:outputLabel value="alquilado" rendered="#{not alquiler.modoNuevo}" />
                 <h:selectBooleanCheckbox 
