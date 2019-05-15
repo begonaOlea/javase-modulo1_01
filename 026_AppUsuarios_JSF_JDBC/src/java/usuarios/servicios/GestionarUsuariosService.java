@@ -92,5 +92,51 @@ public class GestionarUsuariosService implements Serializable {
         }    
         
     }
+    
+    
+    public void modificarUsuario(Usuario u) 
+           throws UsuarioException{
+        log.info("modificar el usuario "  + u.getId());
+        try {
+            //valida si el DNI YA LO TIENE OTRO 
+
+            Usuario usr = dao.getUsuarioPorDNI(u.getDni());
+            
+            if(usr != null && usr.getId() != u.getId()){
+                throw new UsuarioException("Ya existe "
+                        + "un usuario con el DNI" + u.getDni());
+            }
+            
+            dao.modifica(u);
+            conn.commit();
+            
+        } catch (SQLException ex) {
+            log.severe("Al crearNuevo Usuario. error bd :" + ex.getMessage());
+            try {
+                conn.rollback();
+            } catch (SQLException ex1) {
+                log.severe("Al crearNuevo Usuario. error rollback :" + ex1.getMessage());
+            }
+            
+        }    
+        
+    }
+    
+    public Usuario getUsuario(int id){
+        
+        Usuario usr = null;
+        try {
+            usr = dao.buscarPorId(id);
+            
+        } catch (SQLException ex) {
+            log.severe("Error buscarUsuario por Id " +
+                    ex.getMessage());
+
+        }
+        return usr;
+    }
+    
+    
+   
    
 }

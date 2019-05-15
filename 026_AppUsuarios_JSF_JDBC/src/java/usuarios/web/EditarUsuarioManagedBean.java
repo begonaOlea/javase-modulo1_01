@@ -2,12 +2,10 @@
 package usuarios.web;
 
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import usuarios.modelo.Usuario;
 import usuarios.servicios.GestionarUsuariosService;
@@ -15,16 +13,18 @@ import usuarios.servicios.excepciones.UsuarioException;
 
 
 @Named(value = "editarUsuario")
-@ViewScoped
+@SessionScoped
 public class EditarUsuarioManagedBean implements Serializable{
 
     @Inject
     private GestionarUsuariosService servicio;
     
     private Usuario usuario;
+    
+    private boolean modoAlta = false;
  
     public EditarUsuarioManagedBean() {
-        this.usuario = new Usuario();
+        System.out.println("... instanciando EditarUsaurio");
     }
   
     public void setServicio(GestionarUsuariosService servicio) {
@@ -54,6 +54,37 @@ public class EditarUsuarioManagedBean implements Serializable{
         fc.addMessage(null, new FacesMessage(mensaje));
         return "lista";
         
+    }
+    
+    
+     public String modificar(){
+        
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String mensaje = "";
+       
+        try {
+            servicio.modificarUsuario(usuario);
+            mensaje= "El usuario " + usuario.getNombre() 
+                    + "se modificó con éxito.";
+        } catch (UsuarioException ex) {
+           mensaje= "El usuario no se pudo modificar " + ex.getMessage();
+        }
+        fc.addMessage(null, new FacesMessage(mensaje));
+        return "lista";
+        
+    }
+    
+    public String editarParaCrear(){
+        this.usuario = new Usuario();
+        this.modoAlta =true;
+        return "editar";
+        
+    }
+    
+    public String editarParaModificar(int id){
+        this.usuario = servicio.getUsuario(id);
+        this.modoAlta = false;
+        return "editar";
     }
     
 }

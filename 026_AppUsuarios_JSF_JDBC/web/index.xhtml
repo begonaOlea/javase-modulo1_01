@@ -8,6 +8,8 @@
     </h:head>
     <h:body>
         <h2>Lista de Usuarios</h2>
+        
+        <h:form>
         <h:dataTable value="#{gestionarUsuariosManagedBean.lista}"
                      var ="usr">
         
@@ -23,10 +25,21 @@
                 <f:facet name="header">DNI</f:facet>
                 #{usr.dni}
             </h:column>
+            <h:column >
+                <f:facet name="header">Acción</f:facet>
+                <h:commandButton value="Modificar"
+                                 action = "#{editarUsuario.editarParaModificar(usr.id)}"/>
+            </h:column>
         </h:dataTable>
+            
+            <h:commandButton value="Nuevo"
+                             action = "#{editarUsuario.editarParaCrear()}"/>
+            
+            
+            </h:form>
         
         
-        <h:link outcome="alta" value="ALTA" />
+       
         
     </h:body>
 </html>
