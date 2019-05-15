@@ -1,17 +1,24 @@
 
 package usuarios.servicios;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 import usuarios.modelo.Usuario;
 import usuarios.persistencia.UsuarioDAO;
+import usuarios.servicios.excepciones.UsuarioException;
 
-
-public class GestionarUsuariosService {
+@Named(value = "gestionarUsuariosService")
+@SessionScoped
+public class GestionarUsuariosService implements Serializable {
+    
+    private static Logger log = Logger.getLogger("GestionarUsuariosService");
     
     private UsuarioDAO dao;
     private Connection conn;
@@ -58,25 +65,32 @@ public class GestionarUsuariosService {
         
     }
     
-    public void crearNuevoUsuario(Usuario u){
-        
+    public void crearNuevoUsuario(Usuario u) 
+           throws UsuarioException{
+        log.info("grabando nuevo usuario");
         try {
             //valida si dni existe  - PENDIENTE
 
+            Usuario usr = dao.getUsuarioPorDNI(u.getDni());
+            
+            if(usr != null){
+                throw new UsuarioException("Ya existe "
+                        + "un usuario con el DNI" + u.getDni());
+            }
+            
             dao.alta(u);
             conn.commit();
+            
         } catch (SQLException ex) {
-            Logger.getLogger(GestionarUsuariosService.class.getName()).log(Level.SEVERE, null, ex);
+            log.severe("Al crearNuevo Usuario. error bd :" + ex.getMessage());
             try {
                 conn.rollback();
             } catch (SQLException ex1) {
-                Logger.getLogger(GestionarUsuariosService.class.getName()).log(Level.SEVERE, null, ex1);
+                log.severe("Al crearNuevo Usuario. error rollback :" + ex1.getMessage());
             }
-        }
-
-         
+            
+        }    
         
     }
-    
-    
+   
 }

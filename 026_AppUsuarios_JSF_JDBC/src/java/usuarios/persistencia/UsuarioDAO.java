@@ -103,4 +103,23 @@ public class UsuarioDAO
         
     }
     
+    public Usuario getUsuarioPorDNI(String dni) throws SQLException{
+        String consulta = "SELECT * "
+                + "FROM USUARIOS "
+                + "WHERE DNI = ? ";
+        PreparedStatement pst = conn.prepareStatement(consulta);
+        pst.setString(1, dni);
+        ResultSet rs = pst.executeQuery();
+        if(rs.next()){
+            Usuario usr = new Usuario();
+            usr.setId(rs.getInt("ID"));
+            usr.setNombre(rs.getString("NOMBRE"));
+            usr.setDni(rs.getString("DNI"));
+            return usr;
+        }else{
+            return null;
+        }
+    }
+    
+    
 }
