@@ -136,7 +136,20 @@ public class GestionarUsuariosService implements Serializable {
         return usr;
     }
     
-    
+    public boolean existeDNI(String dni) throws UsuarioException { 
+        try {
+            boolean existe = dao.getUsuarioPorDNI(dni) != null;
+            return existe;
+      
+        } catch (SQLException ex) {
+            Logger.getLogger(GestionarUsuariosService.class.getName()).log(Level.SEVERE, null, ex);
+            throw new UsuarioException("Error SQL");
+        }  
+    }
+
+    private Exception UsuarioException(String error_SQL) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
    
 }

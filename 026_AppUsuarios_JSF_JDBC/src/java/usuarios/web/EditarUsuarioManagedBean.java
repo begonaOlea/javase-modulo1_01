@@ -2,9 +2,12 @@
 package usuarios.web;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Named;
 import javax.inject.Inject;
 import usuarios.modelo.Usuario;
@@ -38,6 +41,12 @@ public class EditarUsuarioManagedBean implements Serializable{
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    public boolean isModoAlta() {
+        return modoAlta;
+    }
+    
+    
     
     public String crear(){
         
@@ -63,7 +72,7 @@ public class EditarUsuarioManagedBean implements Serializable{
         String mensaje = "";
        
         try {
-            servicio.modificarUsuario(usuario);
+            servicio.modificarUsuario(this.usuario);
             mensaje= "El usuario " + usuario.getNombre() 
                     + "se modificó con éxito.";
         } catch (UsuarioException ex) {
@@ -85,6 +94,24 @@ public class EditarUsuarioManagedBean implements Serializable{
         this.usuario = servicio.getUsuario(id);
         this.modoAlta = false;
         return "editar";
+    }
+    
+    
+    //LISTENER PARA AJAX
+    public void existeDNIListener(AjaxBehaviorEvent ev){
+        FacesContext fc = FacesContext.getCurrentInstance();
+        try {
+            if (servicio.existeDNI(usuario.getDni())){
+                String msg = "El DNI ya existe";
+                fc.addMessage("formUsuario:dni",
+                               new FacesMessage(msg)); //h:message for="dni"
+             //fc.addMessage(null, new FacesMessage(msg) ); //h:messages   
+            }
+        } catch (UsuarioException ex) {
+            fc.addMessage("formUsuario:dni",
+                               new FacesMessage("error bd"));
+            
+        }
     }
     
 }
