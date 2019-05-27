@@ -25,9 +25,21 @@
                 <f:facet name="header">Acciones</f:facet>
                 <h:commandButton value="IMPRIMIR"
                                  action="#{productosMB.imprimir(producto)}"/>
-            </h:column>
+                <h:commandButton value="SELECCIONAR"
+                                 action="#{productosMB.seleccionar(producto)}"/>
+                <h:commandButton value="AVERIA"
+                    action="#{productosMB.enviarIncidenciaProducto(producto)}"/>
+          
+             </h:column>
             
         </h:dataTable>
+            
+        <h:commandButton value="IMPRIMIR SELECCION"
+                          action="#{productosMB.imprimirSeleccion()}"/>
+        
+         <h:commandButton value="LIMPIAR SELECCION"
+                          action="#{productosMB.limpiarSeleccion()}"/>
+           
         </h:form>
     </h:body>
 </html>
