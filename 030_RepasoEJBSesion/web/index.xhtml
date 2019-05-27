@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Productos</title>
+    </h:head>
+    <h:body>
+        <h3>Lista Productos:</h3>
+        <h:form>
+        <h:dataTable value="#{productosMB.listaProductos}" var="producto">
+            
+            <h:column>
+                <f:facet name="header">Id</f:facet>
+                #{producto.id}
+            </h:column>
+            
+             <h:column>
+                <f:facet name="header">Descripción</f:facet>
+                #{producto.descripcion}
+            </h:column>
+            
+             <h:column>
+                <f:facet name="header">Acciones</f:facet>
+                <h:commandButton value="IMPRIMIR"
+                                 action="#{productosMB.imprimir(producto)}"/>
+            </h:column>
+            
+        </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
