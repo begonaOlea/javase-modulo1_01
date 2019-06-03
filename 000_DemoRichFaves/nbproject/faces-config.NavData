@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="demo08_ajax_status.xhtml" x="593" y="497" zoom="true"/>
+        <Node id="welcomeRichfaces.xhtml" x="69" y="110" zoom="true"/>
+        <Node id="index.xhtml" x="159" y="280" zoom="true"/>
+        <Node id="demo02_a4j_param.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="demo05_jsFuncion.xhtml" x="590" y="355" zoom="true"/>
+        <Node id="demo03_a4j_limitRender.xhtml" x="592" y="246" zoom="true"/>
+        <Node id="demo01_a4j_ajax.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="demo07_poll.xhtml" x="603" y="457" zoom="true"/>
+        <Node id="demo06_graphValidator.xhtml" x="588" y="401" zoom="false"/>
+        <Node id="demo04_rich_validator.xhtml" x="589" y="325" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

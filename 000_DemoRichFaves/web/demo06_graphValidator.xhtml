@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>Demo 4 - graphValidator</title>
+    </h:head>
+    <h:body>
+
+
+        <h:form>
+            <rich:graphValidator value="#{loginBean}">
+                <rich:panel header="cambiar la clave"> 
+                    <rich:messages/>
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nueva Clave:" /> 
+                        <h:inputSecret value="#{loginBean.password}" id="pass"/> 
+                        <rich:message for="pass"/>
+                        <h:outputText value="Confirma nueva clave:" />
+                        <h:inputSecret value="#{loginBean.confirm}" id="conf"/> 
+                        <rich:message for="conf"/>
+                    </h:panelGrid>
+                    <a4j:commandButton value="Guardar cambios" 
+                                       action="#{loginBean.almacenarNuevaPassword()}">
+                        <a4j:param value="Mi texto" assignTo="#{loginBean.status}" />
+                        
+                    </a4j:commandButton>
+            </rich:panel>
+        </rich:graphValidator>
+    </h:form>
+
+</h:body> 
+
+</html>
+
+
+
+
+

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <h:head>
+        <title>Demo 8 - ajax status</title>
+    </h:head>
+    <h:body>
+        <h:form> 
+
+            <h:panelGrid columns="3"> 
+                <h:inputText value="#{demoManagedBean.mensaje}" />
+                 <a4j:commandButton value="Convertir a Mayúsculas" action="#{demoManagedBean.upperCase}" 
+                                   render="upper"/>
+
+
+                <h:outputText id="upper" value="#{demoManagedBean.mensaje}" />
+            </h:panelGrid>
+        </h:form> 
+        <a4j:status id="ajaxStatus" 
+                    startText="LLamando ..." 
+                    startStyle="background-color: #ffA500;
+                    font-weight:bold; position: absolute; left: 520px;
+                    top: 1px;
+                    width: 100px;" />
+    </h:body>
+</html>
+

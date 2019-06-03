@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>Demo 3 - attribute limitRender </title>
+    </h:head>
+    <h:body>
+        <h:form id="form1">
+            
+            Mensaje: <h:inputText value="#{demoManagedBean.mensaje}" required="true"/> <br />
+            Cantidad <h:inputText value="#{demoManagedBean.cantidad}" /> <br />
+            
+             <a4j:commandButton value="Normal rendering" render="infoBlock" /> 
+            <a4j:commandButton value="Limited rendering" render="infoBlock" limitRender="true" /> 
+    </h:form> 
+        
+    <h:panelGrid id="infoBlock"> 
+        <h:outputLabel value="#{demoManagedBean.mensaje}" />
+    </h:panelGrid>
+    <a4j:outputPanel ajaxRendered="true"> 
+        <h:messages /> 
+    </a4j:outputPanel>
+
+
+
+</h:body> 
+
+</html>
+
+

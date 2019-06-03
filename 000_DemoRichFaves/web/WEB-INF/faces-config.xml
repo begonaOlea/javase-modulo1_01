@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>demo1</from-outcome>
+            <to-view-id>/demo01_a4j_ajax.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo2</from-outcome>
+            <to-view-id>/demo02_a4j_param.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo3</from-outcome>
+            <to-view-id>/demo03_a4j_limitRender.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo4</from-outcome>
+            <to-view-id>/demo04_rich_validator.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo5</from-outcome>
+            <to-view-id>/demo05_jsFuncion.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo6</from-outcome>
+            <to-view-id>/demo06_graphValidator.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo7</from-outcome>
+            <to-view-id>/demo07_poll.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>demo8</from-outcome>
+            <to-view-id>/demo08_ajax_status.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+</faces-config>
