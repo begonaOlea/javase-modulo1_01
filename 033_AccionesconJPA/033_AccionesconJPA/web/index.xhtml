@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <h:head>
+        <title>Acciones APP</title>
+    </h:head>
+    <h:body>
+
+        <h3>Lista de Accionistas</h3>
+        <h:form id="form">
+            <rich:dataTable value="#{accionistasMB.listaAccionistas}" 
+                            var="accionista" 
+                            id="dtListaAccionistas" 
+                            rows="5">
+
+                <rich:column sortBy="#{accionista.idAccionista}" >
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{accionista.idAccionista}" />
+                </rich:column>
+                
+                <rich:column sortBy="#{accionista.nombre}" >
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{accionista.nombre}" />
+                </rich:column>
+
+                <f:facet name="footer">
+                    <rich:dataScroller />
+                </f:facet>
+            </rich:dataTable>
+            
+            
+            <rich:panel header="Alta nuevo Accionista">
+                
+                <h:panelGrid columns="3">
+                    
+                    <h:outputLabel for="nombre" 
+                                   value="Nombre Nuevo Accionista:" />
+                    <h:inputText id="nombre" 
+                                 value="#{accionistasMB.nuevoAccionista.nombre}"
+                                 required="true"/>
+                    <rich:message for="nombre"/>
+                    
+                    <a4j:commandButton value="Insertar"
+                                       render="dtListaAccionistas"
+                                       action="#{accionistasMB.btnInsertarAccionista()}"
+                                       />
+                    
+                </h:panelGrid>
+                
+            </rich:panel>
+ 
+        </h:form>
+
+    </h:body>
+</html>
+
