@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -42,22 +43,25 @@ public class Accion implements Serializable {
     @Column(name = "ID_ACCION")
     private Integer idAccion;
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "NOMBRE")
     private String nombre;
     @Basic(optional = false)
-    @NotNull
     @Column(name = "VALOR")
     private int valor;
     @Column(name = "FECHA_CREACION")
     @Temporal(TemporalType.TIMESTAMP)
+    
     private Date fechaCreacion;
     @Column(name = "FECHA_MODIFICACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idAccion")
     private Collection<Compra> compraCollection;
+    
+    
+    @Version
+     @Column(name = "VERSION")
+    private Integer version;
 
     public Accion() {
     }
@@ -120,6 +124,16 @@ public class Accion implements Serializable {
         this.compraCollection = compraCollection;
     }
 
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j">
+    <h:head>
+        <title>Acciones APP</title>
+    </h:head>
+    <h:body>
+        <h1>#{textos.titulo}</h1>
+
+        <h3>Lista de Acciones</h3>
+        <h:form id="formAcciones">
+            <rich:dataTable value="#{accionesMB.listaAcciones}" 
+                            var="accion" 
+                            id="dtListaAccionistas" 
+                            rows="5">
+
+                <rich:column sortBy="#{accion.idAccion}" >
+                    <f:facet name="header">Id</f:facet>
+                    <h:outputText value="#{accion.idAccion}" />
+                </rich:column>
+                
+                <rich:column sortBy="#{accion.nombre}" >
+                    <f:facet name="header">Nombre</f:facet>
+                    <h:outputText value="#{accion.nombre}" />
+                </rich:column>
+                
+                <rich:column >
+                    <f:facet name="header">Valor</f:facet>
+                    <h:outputText value="#{accion.valor}" />
+                </rich:column>
+                 <rich:column >
+                    <f:facet name="header">Tarea</f:facet>
+                    
+                    <a4j:commandLink value="Editar "
+                      render="formEditarAccion"
+                      execute="@this"
+                      action="#{accionesMB.btnEditarAccion(accion.idAccion)}"
+                      /> 
+ 
+                    
+                </rich:column>
+                
+
+                <f:facet name="footer">
+                    <rich:dataScroller />
+                </f:facet>
+            </rich:dataTable>
+            
+             <rich:messages globalOnly="true"/>
+            
+            <h:panelGroup id="formEditarAccion">
+                <rich:panel header="Modificar Acción" 
+                            rendered="#{accionesMB.accionModificar  != null}">
+                
+                <h:panelGrid columns="3">
+                    
+                    <h:outputLabel for="nombre" 
+                                   value="Nombre Acción" />
+                    <h:outputText id="nombre" 
+                                 value="#{accionesMB.accionModificar.nombre}"/>
+                    <rich:message for="nombre"/>
+                    
+                    <h:outputLabel for="valor" 
+                                   value="Valor de Mercado" />
+                    <h:inputText id="valor" 
+                                 value="#{accionesMB.accionModificar.valor}"/>
+                    <rich:message for="valor"/>
+                    
+                    <a4j:commandButton value="Grabar Cambios"
+                                       action="#{accionesMB.btnGrabar()}"
+                                       render="formAcciones formEditarAccion"
+                                       />
+                    
+                </h:panelGrid>
+                
+            </rich:panel>
+                </h:panelGroup>
+ 
+        </h:form>
+
+    </h:body>
+</html>
+

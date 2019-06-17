@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.bolsa.dominio;
 
 import java.io.Serializable;
@@ -18,12 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+import javax.persistence.PreUpdate;
 /**
  *
  * @author begonaolea
@@ -44,14 +41,16 @@ public class Accionista implements Serializable {
     @Basic(optional = false)
     @Column(name = "ID_ACCIONISTA")
     private Integer idAccionista;
+    
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 20)
     @Column(name = "NOMBRE")
+    @Size(min = 1, max = 20)
     private String nombre;
+    
     @Column(name = "FECHA_CREACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaCreacion;
+    
     @Column(name = "FECHA_MODIFICACION")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaModificacion;
@@ -135,5 +134,18 @@ public class Accionista implements Serializable {
     public String toString() {
         return "com.bolsa.dominio.Accionista[ idAccionista=" + idAccionista + " ]";
     }
+    
+    @PrePersist
+    public void alCrear(){
+        this.setFechaCreacion(new Date());
+        this.setFechaModificacion(new Date());
+    }
+    
+    @PreUpdate
+    public void alModificar(){
+         this.setFechaModificacion(new Date());
+    }
+    
+    
     
 }

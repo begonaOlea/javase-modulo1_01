@@ -9,6 +9,7 @@
         <title>Acciones APP</title>
     </h:head>
     <h:body>
+        <h1>#{textos.titulo}</h1>
 
         <h3>Lista de Accionistas</h3>
         <h:form id="form">
@@ -26,13 +27,35 @@
                     <f:facet name="header">Nombre</f:facet>
                     <h:outputText value="#{accionista.nombre}" />
                 </rich:column>
+                
+                 <rich:column >
+                    <f:facet name="header">Acciones</f:facet>
+                    
+                    <a4j:commandLink value="Borrar"
+                      render="dtListaAccionistas"
+                      execute="@this"
+                      action="#{accionistasMB.btnBorrarAccionista(accionista.idAccionista)}"
+                      /> 
+                    
+                     / 
+                     
+                      <a4j:commandLink value="Añade Maria"
+                      render="dtListaAccionistas"
+                      execute="@this"
+                      action="#{accionistasMB.btnModificarNombreAccionista(accionista)}"
+                      /> 
+                    
+                    
+                </rich:column>
+                
 
                 <f:facet name="footer">
                     <rich:dataScroller />
                 </f:facet>
             </rich:dataTable>
             
-            
+            <rich:messages globalOnly="true"/>
+                           
             <rich:panel header="Alta nuevo Accionista">
                 
                 <h:panelGrid columns="3">
@@ -41,7 +64,8 @@
                                    value="Nombre Nuevo Accionista:" />
                     <h:inputText id="nombre" 
                                  value="#{accionistasMB.nuevoAccionista.nombre}"
-                                 required="true"/>
+                                 required="true"
+                                 requiredMessage="#{textos.accionista.nombre}"/>
                     <rich:message for="nombre"/>
                     
                     <a4j:commandButton value="Insertar"
